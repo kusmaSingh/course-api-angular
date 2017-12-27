@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+.heading{
+  font-family: "OpenSymbol";
+  color: coral;
+  padding: 10px;
+}
+.topicdisplay{
+  background-color: darkseagreen;
+  float: right !important;
+  margin-top: 40px;
+  margin-right: 156px;
+  padding: 10px;
+  border-radius: 7px;
+}
+.glyphicon-trash:before {
+  content: "\e020";
+  color: orange;
+}
+.glyphicon-pencil:before {
+  content: "\270f";
+  color: darkcyan;
+}

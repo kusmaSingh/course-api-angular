@@ -1,0 +1,106 @@
+<!--<div class="col-md-6">
+  <h3>Select Topic..</h3>
+  <select value ="Topic">
+    <option>Java</option>
+    <option value="Spring">Spring</option>
+    <option value="Ruby">Ruby</option>
+    <option value="Angularjs">Angularjs</option>
+    <option value="Reactjs">Reactjs</option>
+  </select>
+</div>
+<div class="col-md-6">
+  <h3>Select Topic..</h3>
+  <select  value ="Topic">
+    <option>Java-stream</option>
+    <option value="Spring">Spring-stream</option>
+    <option value="Ruby">Ruby-stream</option>
+    <option value="Angularjs">Angularjs-stream</option>
+    <option value="Reactjs">Reactjs-stream</option>
+  </select>
+</div>
+<button value="submit" (click)="getAllTopic1()">Get All Topics</button>-->
+<div class="container-fluid" >
+  <div class="row">
+    <div class="col-sm-6" style="background-color:mintcream;">
+      <h3 class="heading"> All Topics are:</h3>
+
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of pagedItems;">
+          <th scope="row"></th>
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.description}}</td>
+          <td><div class="btn-group">
+            <button type="button" class="btn btn-default btn" (click)="edit(item.id);"><i class="glyphicon glyphicon-pencil"></i></button>
+            <button type="button" class="btn btn-default btn" (click)="deleteTopic(item.id);"><i class="glyphicon glyphicon-trash"></i></button>
+          </div></td>
+        </tr>
+
+        </tbody>
+
+<!--
+            &lt;!&ndash; items being paged &ndash;&gt;
+            <div *ngFor="let item of pagedItems">{{item.name}}</div>-->
+
+            <!-- pager -->
+
+      </table>
+
+      <hr class="divider">
+
+      <div>
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+        </ul>
+      </div>
+      <hr class="divider">
+      <div>
+        <h3 class="heading"> Add New Topics here:</h3>
+        <div class="col-sm-8 topic" [class.editBoader]="editable">
+
+          <label>Id</label>
+          <input type="text" class="form-control" [(ngModel)]="topic.id" [disabled]="editable"   >
+          <label>Name</label>
+          <input type="text" class="form-control" [(ngModel)]="topic.name" >
+          <label>Description</label>
+          <textarea rows="4" cols="50" class="form-control" [(ngModel)]="topic.description" ></textarea>
+
+          <button class="btn btn-info addTopic" (click)="addTopic()">Add</button>
+          <!--<button class="btn btn-info addTopic" (click)="editTopic()">Update</button>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6" style="background-color:aliceblue;">
+      <app-course></app-course>
+    </div>
+
+
+  </div>
+
+
+</div>

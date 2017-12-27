@@ -1,0 +1,26 @@
+.tableCustom{
+  border-color: black;
+}
+.divider{
+/*  height: 45px;
+  border-style: solid;
+  border-color: lightskyblue;
+  border-width: 1px 0 0 0;
+  border-radius: 20px;*/
+  border-top: 1px solid lightskyblue;
+  }
+.topic{
+  background-color: beige;
+  height: auto;
+  padding: 10px;
+}
+.addTopic{
+  margin-top: 10px;
+  padding-left: 18px;
+  padding-right: 18px;
+  font-size: 14px;
+}
+
+.editBoader{
+  border: 1px solid deepskyblue;
+}

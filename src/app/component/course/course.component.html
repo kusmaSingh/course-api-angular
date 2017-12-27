@@ -1,0 +1,89 @@
+<div>
+
+  <h3 class="heading"> All Topics are:</h3>
+
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of courseArray;">
+      <th scope="row"></th>
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.description}}</td>
+
+      <td><div class="btn-group">
+        <button type="button" class="btn btn-default btn" (click)="edit(item.id);"><i class="glyphicon glyphicon-pencil"></i></button>
+        <button type="button" class="btn btn-default btn" (click)="deleteCourse(item.id);"><i class="glyphicon glyphicon-trash"></i></button>
+        <button type="button" class="btn btn-success btn" (click)="viewTopic(item.id);">Topic</button>
+      </div></td>
+    </tr>
+
+    </tbody>
+
+    <!--
+                &lt;!&ndash; items being paged &ndash;&gt;
+                <div *ngFor="let item of pagedItems">{{item.name}}</div>-->
+
+    <!-- pager -->
+
+  </table>
+
+  <hr class="divider">
+
+  <div>
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+      <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+      </li>
+      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+      </li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+  <h4 class="heading"> Check course here under particular topic</h4>
+
+  <select value="Topic" class="btn btn-primary dropdown-toggle " [(ngModel)]="topicModel.id">
+    <option *ngFor="let item of topic" [value]="item.value" > {{item.displayValue}}</option>
+  </select>
+
+<select value="Course" class="btn btn-primary dropdown-toggle " [(ngModel)]=" courseModel.id">
+  <option *ngFor="let course of courses" [value]="course.value" > {{course.displayValue}}</option>
+</select>
+
+  <button value="submit" class="btn btn-info" (click)="getAllCourseByTopicId(topicModel.id,courseModel.id)"> Submit</button>
+
+  <div *ngIf="show">
+    <h3 class="heading">Detail</h3>
+    <h5>Course</h5>
+    <li>{{courseModel.id}}</li>
+    <li>{{courseModel.name}}</li>
+    <li>{{courseModel.description}}</li>
+    <li>To see Topic click here</li> <button class="btn btn-success"(click)="viewTopic()">Topic</button>
+      <div *ngIf="display" class="col-sm-8 topicdisplay">
+        <li>{{topicModel.id}}</li>
+        <li>{{topicModel.name}}</li>
+        <li>{{topicModel.description}}</li>
+      </div>
+  </div>
+
+
+</div>
