@@ -86,7 +86,7 @@ export class TopicComponent implements OnInit {
   }
 
   edit(id) {
-    window.scroll(50, 100);
+    window.scroll(50, 200);
     this.editable = true;
     this.topicService.getTopicById(id).subscribe(response => {
       var objResponse = JSON.parse(response);

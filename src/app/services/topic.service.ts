@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Constants} from '../comman/constant';
 import {TopicModel} from '../model/topic.model';
+import {CourseModel} from '../model/course.model';
 
 @Injectable()
 export class TopicService  extends BaseService{
@@ -53,4 +54,11 @@ public getTopicById( id:string){
   return this.http.get(Constants.WEB_URL+"topics/"+topicId+"/course/"+courseId);
 
   }
+
+  public addCourse(topicId:string, courseModel:CourseModel):Observable<any>{
+    const headers = new HttpHeaders();
+    headers.set('Content-Type','application/json;');
+    return this.http.post(Constants.WEB_URL+"topics/"+topicId+"/course/"+courseModel.id, courseModel ,{ headers: headers, withCredentials:true , responseType: 'text'});
+  }
+
 }

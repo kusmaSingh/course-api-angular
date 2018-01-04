@@ -61,19 +61,19 @@
       <div>
         <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
           <li [ngClass]="{disabled:pager.currentPage === 1}">
-            <a (click)="setPage(1)">First</a>
+            <a (click)="setPage(1)"> < </a>
           </li>
           <li [ngClass]="{disabled:pager.currentPage === 1}">
-            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+            <a (click)="setPage(pager.currentPage - 1)"> << </a>
           </li>
           <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
             <a (click)="setPage(page)">{{page}}</a>
           </li>
           <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+            <a (click)="setPage(pager.currentPage + 1)"> >> </a>
           </li>
           <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-            <a (click)="setPage(pager.totalPages)">Last</a>
+            <a (click)="setPage(pager.totalPages)"> > </a>
           </li>
         </ul>
       </div>
@@ -83,11 +83,11 @@
         <div class="col-sm-8 topic" [class.editBoader]="editable">
 
           <label>Id</label>
-          <input type="text" class="form-control" [(ngModel)]="topic.id" [disabled]="editable"   >
+          <input type="text" class="form-control" [(ngModel)]="topic.id" [disabled]="editable" placeholder="Enter Topic Id"   >
           <label>Name</label>
-          <input type="text" class="form-control" [(ngModel)]="topic.name" >
+          <input type="text" class="form-control" [(ngModel)]="topic.name" placeholder="Enter Topic Name">
           <label>Description</label>
-          <textarea rows="4" cols="50" class="form-control" [(ngModel)]="topic.description" ></textarea>
+          <textarea rows="4" cols="50" class="form-control" [(ngModel)]="topic.description" placeholder="Enter Topic Description"></textarea>
 
           <button class="btn btn-info addTopic" (click)="addTopic()">Add</button>
           <!--<button class="btn btn-info addTopic" (click)="editTopic()">Update</button>-->

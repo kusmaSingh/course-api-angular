@@ -11,56 +11,118 @@ import {PagerService} from '../../services/comman-service/page.service';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
-  public courseArray:Object =[] ;
-  public courses = Constants.courseType;
-  public topic = Constants.topicType;
+  public courseArray: any = [];
+  public courses;
+  public topic;
+  public addTopic;
   public topicModel: TopicModel = new TopicModel();
   public courseModel: CourseModel = new CourseModel();
-  public show : boolean;
-  public display:boolean;
-
+  public show: boolean;
+  public display: boolean;
+  public courseId: string;
+  public courseNAme: string;
+  public courseDescription: string;
+  public topicID: string = '';
   // array of all items to be paged
-  private allItems: any[];
-
+  private allItems: any = [];
+  private item: any[];
+  /*  item:any ={
+     'id':'',
+     'name':'',
+     'description':''
+   }*/
   // pager object
   pager: any = {};
 
   // paged items
   pagedItems: any[];
 
-  constructor(private topicService: TopicService, private pagerService :PagerService) {
+  constructor(private topicService: TopicService, private pagerService: PagerService) {
   }
 
   ngOnInit() {
-    this.getAllCourses()
+    this.getAllCourses();
+    this.getAllTopic();
   }
-  /*Get All Courses */
-  public getAllCourses(){
-    this.topicService.getAllCourses().subscribe(response=>{
-      debugger;
-      this.courseArray = response;
-      var test =JSON.stringify(this.courseArray)
 
-      console.log(test );
-    })
+  /*Get All topics */
+  public getAllTopic() {
+    this.topicService.getAllCourseService().subscribe(response => {
+      this.addTopic = response;
+    });
+  }
+
+  /*Get All Courses */
+  public getAllCourses() {
+    this.topicService.getAllCourses().subscribe(response => {
+      this.courseArray = response;
+      this.courses = response;
+
+      // set items to json response
+      for (let o of this.courseArray) {
+       // console.log("before ",this.courseArray);
+        this.courseModel.id = o.id;
+        this.courseModel.name = o.name;
+        this.courseModel.description = o.description;
+        /*//this.courseArray.shift('topic');
+        //this.item = o.id;
+        /!*  this.item = o.name;
+          this.item = o.description;*!/
+
+        /!* this.item.id = o.id;
+         this.item.name = o.name;
+         this.item.description = o.description;*!/
+        //console.log(this.courseModel)*/
+      }
+      this.allItems = this.courseModel;
+
+      // initialize to page 1
+      this.setPage(1);
+
+    });
   }
 
 
   public getAllCourseByTopicId(topicId, courseId) {
     this.topicService.getAllCourseByTopicId(topicId, courseId).subscribe(response => {
-      console.log("res",response);
-      this.show= true;
-      this.courseModel.id= response.id
-      this.courseModel.name= response.name
-      this.courseModel.description= response.description
-      this.topicModel.id=response.topic.id;
-      this.topicModel.name=response.topic.name;
-      this.topicModel.description=response.topic.description;
+      //console.log("res",response);
+      this.show = true;
+      this.courseModel.id = response.id;
+      this.courseModel.name = response.name;
+      this.courseModel.description = response.description;
+      this.topicModel.id = response.topic.id;
+      this.topicModel.name = response.topic.name;
+      this.topicModel.description = response.topic.description;
+
     });
   }
-  viewTopic(){
-    this.display= true;
+
+  /*Add New Course For Topic*/
+  public addCourse(topicId, course) {
+    topicId = this.topicID;
+    this.courseModel.id = this.courseId;
+    this.courseModel.name = this.courseNAme;
+    this.courseModel.description = this.courseDescription;
+    console.log(this.courseModel);
+    this.topicService.addCourse(topicId, this.courseModel).subscribe(response => {
+      this.resetCourseFields();
+    });
   }
+
+  /*reset course fields*/
+  public resetCourseFields() {
+    this.courseId = '';
+    this.courseNAme = '';
+    this.courseDescription = '';
+  }
+
+
+  /*use to view Topic container in search course*/
+  viewTopic() {
+    this.display = true;
+  }
+
+
   setPage(page: number) {
     if (page < 1 || page > this.pager.totalPages) {
       return;
@@ -76,15 +138,16 @@ export class CourseComponent implements OnInit {
     // alert("pagedItems" +JSON.stringify(this.pager));
   }
 
-  public edit(){
+
+  public edit() {
 
   }
 
-  public deleteCourse(){
+  public deleteCourse() {
 
   }
 
-  public viewTopicTable(){
+  public viewTopicTable() {
 
   }
 }
