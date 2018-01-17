@@ -1,0 +1,12 @@
+Method--------------------------------------API----------------------------------------------------------------------(type)
+____________________________________________________
+1)getNotificationsByUserId            =api/user/notification/' + userId                                        (post)
+2)getNotificationsByUserIdAndLimit    =api/user/notificationlimit/' + userId	                               (get)	
+3)uploadImage                         =api/profile/saveKycDocument/' + documentId + "/" + currentuser.userId   (post)
+4)getUserProfile                      =api/user/profile/' + currentuser.userId                                 (get)
+5)loadKycDocument                     =api/profile/loadKYCDocument/' + currentUser.userId                      (get)
+6)kycDetail                           =api/profile/saveKycDetail/' + currentuser.userId                        (post)
+7)bankDetail                          =api/profile/saveBankDetail/' + currentuser.userId                       (post)
+8)loadBankDetailByUserId              =api/profile/bankDetail/' + userId                                       (get)
+9)loadKycDetailByUserId               =api/profile/kycDetail/' + userId                                    	   (get)
+10)userProfileUpload                  =api/profile/image/' + currentuser.userId                                (post)

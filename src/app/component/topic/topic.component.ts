@@ -13,7 +13,7 @@ export class TopicComponent implements OnInit {
 
   public topic: TopicModel = new TopicModel();
   public editable: boolean;
-  public topicId: string;
+  public topicId: number;
 
   constructor(private topicService: TopicService,
               private pagerService: PagerService,) {
@@ -49,16 +49,16 @@ export class TopicComponent implements OnInit {
   }
 
   public addTopic() {
+    debugger;
     this.editable = false;
-    if (this.topic.id === null) {
       this.topicService.addTopic(this.topic).subscribe(response => {
         this.getAllTopic1();
         this.resetTopicField();
       });
-    }
+    /*
     else {
       this.editTopic();
-    }
+    }*/
     err => {
       console.log(err.error);
     };
@@ -74,7 +74,7 @@ export class TopicComponent implements OnInit {
     };
   }
 
-  public editTopic() {
+  /*public editTopic() {
     this.topicService.updateTopic(this.topic, this.topicId).subscribe(response => {
       this.resetTopicField();
       this.getAllTopic1();
@@ -83,7 +83,7 @@ export class TopicComponent implements OnInit {
     err => {
       console.log(err.error);
     };
-  }
+  }*/
 
   edit(id) {
     window.scroll(50, 200);
@@ -93,6 +93,7 @@ export class TopicComponent implements OnInit {
       this.topic.id = objResponse.id;
       this.topicId = objResponse.id;
       this.topic.name = objResponse.name;
+      this.topic.stream = objResponse.stream;
       this.topic.description = objResponse.description;
     });
   }
@@ -113,8 +114,9 @@ export class TopicComponent implements OnInit {
   }
 
   public resetTopicField() {
-    this.topic.id = '';
+    this.topic.id = null;
     this.topic.name = '';
+    this.topic.stream = '';
     this.topic.description = '';
   }
 

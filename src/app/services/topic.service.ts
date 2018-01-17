@@ -26,18 +26,18 @@ export class TopicService  extends BaseService{
    return this.http.post(Constants.WEB_URL+"topics", topic,{ headers: headers, withCredentials:true , responseType: 'text'});
  }
 
- public removeTopic(id:string){
+ public removeTopic(id:number){
    const headers = new HttpHeaders();
    headers.set('Content-Type','application/json;');
    return this.http.delete(Constants.WEB_URL+"topics/remove/"+id , { headers: headers, withCredentials:true , responseType: 'text'});
  }
 
- public updateTopic(topic:TopicModel,id:string){
+ public updateTopic(topic:TopicModel,id:number){
    const headers = new HttpHeaders();
    headers.set('Content-Type','application/json;');
    return this.http.post(Constants.WEB_URL+"topics/"+id , topic ,{ headers: headers, withCredentials:true , responseType: 'text'});
  }
-public getTopicById( id:string){
+public getTopicById( id:number){
   const headers = new HttpHeaders();
   headers.set('Content-Type','application/json;');
   return this.http.get(Constants.WEB_URL+"topics/"+id , { headers: headers, withCredentials:true , responseType: 'text'});
@@ -50,12 +50,12 @@ public getTopicById( id:string){
   }
 
 
-  public getAllCourseByTopicId(topicId:string, courseId:string): Observable <any>{
+  public getAllCourseByTopicId(topicId:number, courseId:number): Observable <any>{
   return this.http.get(Constants.WEB_URL+"topics/"+topicId+"/course/"+courseId);
 
   }
 
-  public addCourse(topicId:string, courseModel:CourseModel):Observable<any>{
+  public addCourse(topicId:number, courseModel:CourseModel):Observable<any>{
     const headers = new HttpHeaders();
     headers.set('Content-Type','application/json;');
     return this.http.post(Constants.WEB_URL+"topics/"+topicId+"/course/"+courseModel.id, courseModel ,{ headers: headers, withCredentials:true , responseType: 'text'});

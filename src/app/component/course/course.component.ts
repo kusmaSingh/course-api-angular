@@ -19,8 +19,9 @@ export class CourseComponent implements OnInit {
   public courseModel: CourseModel = new CourseModel();
   public show: boolean;
   public display: boolean;
-  public courseId: string;
-  public courseNAme: string;
+  public courseId: number;
+  public courseName: string;
+  public courseStream :string;
   public courseDescription: string;
   public topicID: string = '';
   // array of all items to be paged
@@ -55,9 +56,9 @@ export class CourseComponent implements OnInit {
   /*Get All Courses */
   public getAllCourses() {
     this.topicService.getAllCourses().subscribe(response => {
+      console.log(response)
       this.courseArray = response;
       this.courses = response;
-
       // set items to json response
       for (let o of this.courseArray) {
        // console.log("before ",this.courseArray);
@@ -74,10 +75,10 @@ export class CourseComponent implements OnInit {
          this.item.description = o.description;*!/
         //console.log(this.courseModel)*/
       }
-      this.allItems = this.courseModel;
+     /* this.allItems = this.courseModel;
 
       // initialize to page 1
-      this.setPage(1);
+      this.setPage(1);*/
 
     });
   }
@@ -101,7 +102,7 @@ export class CourseComponent implements OnInit {
   public addCourse(topicId, course) {
     topicId = this.topicID;
     this.courseModel.id = this.courseId;
-    this.courseModel.name = this.courseNAme;
+    this.courseModel.name = this.courseName;
     this.courseModel.description = this.courseDescription;
     console.log(this.courseModel);
     this.topicService.addCourse(topicId, this.courseModel).subscribe(response => {
@@ -111,8 +112,8 @@ export class CourseComponent implements OnInit {
 
   /*reset course fields*/
   public resetCourseFields() {
-    this.courseId = '';
-    this.courseNAme = '';
+    this.courseId = null;
+    this.courseName = '';
     this.courseDescription = '';
   }
 

@@ -24,12 +24,13 @@
     <div class="col-sm-6" style="background-color:mintcream;">
       <h3 class="heading"> All Topics are:</h3>
 
-      <table class="table">
+      <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
           <th scope="col">
           <th scope="col">Id</th>
           <th scope="col">Name</th>
+          <th scope="col" >Stream</th>
           <th scope="col">Description</th>
           <th scope="col">Action</th>
         </tr>
@@ -39,6 +40,7 @@
           <th scope="row"></th>
           <td>{{item.id}}</td>
           <td>{{item.name}}</td>
+          <td>{{item.stream}}</td>
           <td>{{item.description}}</td>
           <td><div class="btn-group">
             <button type="button" class="btn btn-default btn" (click)="edit(item.id);"><i class="glyphicon glyphicon-pencil"></i></button>
@@ -83,9 +85,11 @@
         <div class="col-sm-8 topic" [class.editBoader]="editable">
 
           <label>Id</label>
-          <input type="text" class="form-control" [(ngModel)]="topic.id" [disabled]="editable" placeholder="Enter Topic Id"   >
+          <input type="text" class="form-control" [(ngModel)]="topic.id" [disabled]="editable" placeholder="Enter Topic Id">
           <label>Name</label>
           <input type="text" class="form-control" [(ngModel)]="topic.name" placeholder="Enter Topic Name">
+          <label>Stream</label>
+          <input type="text" class="form-control" [(ngModel)]="topic.stream" placeholder="Enter Topic Stream">
           <label>Description</label>
           <textarea rows="4" cols="50" class="form-control" [(ngModel)]="topic.description" placeholder="Enter Topic Description"></textarea>
 

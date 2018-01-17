@@ -1,6 +1,7 @@
 export class CourseModel{
-  id:string;
+  id:number;
   name:string;
+  stream:string
   description:string
 
 }

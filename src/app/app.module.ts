@@ -11,6 +11,9 @@ import {TopicService} from './services/topic.service';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {PagerService} from './services/comman-service/page.service';
+import { SignupComponent } from './component/signup/signup.component';
+import { LoginComponent } from './component/login/login.component';
+import { HomeComponent } from './component/home/home.component';
 
 
 @NgModule({
@@ -19,6 +22,9 @@ import {PagerService} from './services/comman-service/page.service';
     TopicComponent,
     CourseComponent,
     PagenotfoundComponent,
+    SignupComponent,
+    LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

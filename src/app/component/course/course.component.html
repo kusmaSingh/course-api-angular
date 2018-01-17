@@ -10,6 +10,7 @@
       <th scope="col">Topic Id</th>
       <th scope="col">Course Id</th>
       <th scope="col">Course Name</th>
+      <th scope="col">Stream</th>
       <th scope="col">Course Description</th>
       <th scope="col">Action</th>
     </tr>
@@ -17,16 +18,21 @@
     <tbody>
     <tr *ngFor="let item of courseArray;">
       <th scope="row"></th>
-      <td>{{item.topic.id}}</td>
+      <td>{{item.topicDTO.id}}</td>
       <td>{{item.id}}</td>
       <td>{{item.name}}</td>
+      <td>{{item.stream}}</td>
       <td>{{item.description}}</td>
 
-      <td><div class="btn-group">
-        <button type="button" class="btn btn-default btn" (click)="edit(item.id);"><i class="glyphicon glyphicon-pencil"></i></button>
-        <button type="button" class="btn btn-default btn" (click)="deleteCourse(item.id);"><i class="glyphicon glyphicon-trash"></i></button>
-        <!--<button type="button" class="btn btn-success btn" (click)="viewTopic(item.id);">Topic</button>-->
-      </div></td>
+      <td>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn" (click)="edit(item.id);"><i
+            class="glyphicon glyphicon-pencil"></i></button>
+          <button type="button" class="btn btn-default btn" (click)="deleteCourse(item.id);"><i
+            class="glyphicon glyphicon-trash"></i></button>
+          <!--<button type="button" class="btn btn-success btn" (click)="viewTopic(item.id);">Topic</button>-->
+        </div>
+      </td>
     </tr>
 
     </tbody>
@@ -38,7 +44,7 @@
     <!-- pager -->
 
   </table>
-
+<!--
   <hr class="divider">
 
   <div>
@@ -59,63 +65,65 @@
         <a (click)="setPage(pager.totalPages)">Last</a>
       </li>
     </ul>
-  </div>
+  </div>-->
   <hr class="divider">
   <!----------------Add course and topic------------------------>
 
   <div>
-<h3 class="heading"  > Add new Course here:</h3>
+    <h3 class="heading"> Add new Course here:</h3>
     <div>
-      <select value="Topic" class="btn btn-warning dropdown-toggle " [(ngModel)]="topicID" >
-      <option *ngFor="let topics of addTopic" [value]="topics.id" > {{topics.id}}</option>
-    </select>
-    <hr>
-    <label>Topic Id</label>
-    <input type="text" class="form-control" readonly [value]="topicID">
+      <select value="Topic" class="btn btn-warning dropdown-toggle " [(ngModel)]="topicID">
+        <option *ngFor="let topics of addTopic" [value]="topics.name"> {{topics.name}}</option>
+      </select>
+      <hr>
+      <label>Topic Id</label>
+      <input type="text" class="form-control" readonly [value]="topicID">
 
-    <label>Course Id</label>
-    <input type="text" class="form-control" [(ngModel)]="courseId"  placeholder="Enter Course Id"   >
-    <label>Name</label>
-    <input type="text" class="form-control" [(ngModel)]="courseNAme" placeholder="Enter Course Name">
-    <label>Description</label>
-    <textarea rows="4" cols="50" class="form-control" [(ngModel)]="courseDescription" placeholder="Enter Course Description"></textarea>
+      <label>Course Id</label>
+      <input type="text" class="form-control" [(ngModel)]="courseId" placeholder="Enter Course Id">
+      <label>Name</label>
+      <input type="text" class="form-control" [(ngModel)]="courseName" placeholder="Enter Course Name">
+      <label>Stream</label>
+      <input type="text" class="form-control" [(ngModel)]="courseStream" placeholder="Enter Course Name">
+      <label>Description</label>
+      <textarea rows="4" cols="50" class="form-control" [(ngModel)]="courseDescription"
+                placeholder="Enter Course Description"></textarea>
 
-    <button class="btn btn-info addTopic" (click)="addCourse()">Add</button>
+      <button class="btn btn-info addTopic" (click)="addCourse()">Add</button>
     </div>
-
-
-
-
-
 
 
   </div>
 
   <!----------------check course and topic------------------------>
-<br>
+  <br>
   <h4 class="heading"> Check course here under particular topic</h4>
 
   <select value="Topic" class="btn btn-primary dropdown-toggle " id="topic" [(ngModel)]="topicModel.id">
-    <option *ngFor="let item of courses" [value]="item.topic.id" > {{item.topic.id}}</option>
+    <option *ngFor="let item of courses" [value]="item.topicDTO.id"> {{item.topicDTO.id}}</option>
   </select>
 
-<select value="Course" class="btn btn-primary dropdown-toggle " [(ngModel)]=" courseModel.id">
-  <option *ngFor="let course of courses" [value]="course.id" > {{course.id}}</option>
-</select>
-  <button value="submit" class="btn btn-info" (click)="getAllCourseByTopicId(topicModel.id,courseModel.id)"> Submit</button>
+  <select value="Course" class="btn btn-primary dropdown-toggle " [(ngModel)]=" courseModel.id">
+    <option *ngFor="let course of courses" [value]="course.id"> {{course.id}}</option>
+  </select>
+  <button value="submit" class="btn btn-info" (click)="getAllCourseByTopicId(topicModel.id,courseModel.id)"> Submit
+  </button>
 
   <div *ngIf="show">
     <h3 class="heading">Detail</h3>
     <h5>Course</h5>
     <li>{{courseModel.id}}</li>
     <li>{{courseModel.name}}</li>
+    <li>{{courseModel.stream}}</li>
     <li>{{courseModel.description}}</li>
-    <li style="color: cadetblue">To see Topic click button</li> <button class="btn btn-success"(click)="viewTopic()">Topic</button>
-      <div *ngIf="display" class="col-sm-8 topicdisplay">
-        <li>{{topicModel.id}}</li>
-        <li>{{topicModel.name}}</li>
-        <li>{{topicModel.description}}</li>
-      </div>
+    <li style="color: cadetblue">To see Topic click button</li>
+    <button class="btn btn-success" (click)="viewTopic()">Topic</button>
+    <div *ngIf="display" class="col-sm-8 topicdisplay">
+      <li>{{topicModel.id}}</li>
+      <li>{{topicModel.name}}</li>
+      <li>{{topicModel.stream}}</li>
+      <li>{{topicModel.description}}</li>
+    </div>
   </div>
 
 

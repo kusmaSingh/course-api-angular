@@ -1,6 +1,6 @@
 export class TopicModel{
-  id:string;
+  id:number;
   name:string;
-  description:string
-
+  stream:string;
+  description:string;
 }
