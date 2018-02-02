@@ -19,10 +19,9 @@
   </select>
 </div>
 <button value="submit" (click)="getAllTopic1()">Get All Topics</button>-->
-<!--
 <div class="container-fluid" >
   <div class="row">
-    <div class="col-sm-6" style="background-color:mintcream;">
+    <div class="col-sm-12" style="background-color:mintcream;">
       <h3 class="heading"> All Topics are:</h3>
 
       <table class="table table-bordered">
@@ -51,11 +50,11 @@
 
         </tbody>
 
-&lt;!&ndash;
+<!--
             &lt;!&ndash; items being paged &ndash;&gt;
-            <div *ngFor="let item of pagedItems">{{item.name}}</div>&ndash;&gt;
+            <div *ngFor="let item of pagedItems">{{item.name}}</div>-->
 
-            &lt;!&ndash; pager &ndash;&gt;
+            <!-- pager -->
 
       </table>
 
@@ -95,18 +94,19 @@
           <textarea rows="4" cols="50" class="form-control" [(ngModel)]="topic.description" placeholder="Enter Topic Description"></textarea>
 
           <button class="btn btn-info addTopic" (click)="addTopic()">Add</button>
-          &lt;!&ndash;<button class="btn btn-info addTopic" (click)="editTopic()">Update</button>&ndash;&gt;
+          <!--<button class="btn btn-info addTopic" (click)="editTopic()">Update</button>-->
         </div>
       </div>
     </div>
 
+<!--
     <div class="col-sm-6" style="background-color:aliceblue;">
       <app-course></app-course>
     </div>
+-->
 
 
   </div>
 
 
 </div>
--->

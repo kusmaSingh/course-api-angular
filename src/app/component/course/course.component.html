@@ -1,132 +1,3 @@
-<!--
-<div>
-  &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;All course&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
-
-  <h3 class="heading"> All Courses are:</h3>
-
-  <table class="table">
-    <thead class="thead-dark">
-    <tr>
-      <th scope="col">
-      <th scope="col">Topic Id</th>
-      <th scope="col">Course Id</th>
-      <th scope="col">Course Name</th>
-      <th scope="col">Stream</th>
-      <th scope="col">Course Description</th>
-      <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of courseArray;">
-      <th scope="row"></th>
-      <td>{{item.topicDTO.id}}</td>
-      <td>{{item.id}}</td>
-      <td>{{item.name}}</td>
-      <td>{{item.stream}}</td>
-      <td>{{item.description}}</td>
-
-      <td>
-        <div class="btn-group">
-          <button type="button" class="btn btn-default btn" (click)="edit(item.id);"><i
-            class="glyphicon glyphicon-pencil"></i></button>
-          <button type="button" class="btn btn-default btn" (click)="deleteCourse(item.id);"><i
-            class="glyphicon glyphicon-trash"></i></button>
-          &lt;!&ndash;<button type="button" class="btn btn-success btn" (click)="viewTopic(item.id);">Topic</button>&ndash;&gt;
-        </div>
-      </td>
-    </tr>
-
-    </tbody>
-
-
-  </table>
-&lt;!&ndash;
-  <hr class="divider">
-
-  <div>
-    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-      <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="setPage(1)">First</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-      </li>
-      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-        <a (click)="setPage(page)">{{page}}</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="setPage(pager.currentPage + 1)">Next</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="setPage(pager.totalPages)">Last</a>
-      </li>
-    </ul>
-  </div>&ndash;&gt;
-  <hr class="divider">
-  &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Add course and topic&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
-
-  <div>
-    <h3 class="heading"> Add new Course here:</h3>
-    <div>
-      <select value="Topic" class="btn btn-warning dropdown-toggle " [(ngModel)]="topicID">
-        <option *ngFor="let topics of addTopic" [value]="topics.name"> {{topics.name}}</option>
-      </select>
-      <hr>
-      <label>Topic Id</label>
-      <input type="text" class="form-control" readonly [value]="topicID">
-
-      <label>Course Id</label>
-      <input type="text" class="form-control" [(ngModel)]="courseId" placeholder="Enter Course Id">
-      <label>Name</label>
-      <input type="text" class="form-control" [(ngModel)]="courseName" placeholder="Enter Course Name">
-      <label>Stream</label>
-      <input type="text" class="form-control" [(ngModel)]="courseStream" placeholder="Enter Course Name">
-      <label>Description</label>
-      <textarea rows="4" cols="50" class="form-control" [(ngModel)]="courseDescription"
-                placeholder="Enter Course Description"></textarea>
-
-      <button class="btn btn-info addTopic" (click)="addCourse()">Add</button>
-    </div>
-
-
-  </div>
-
-  &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;check course and topic&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
-  <br>
-  <h4 class="heading"> Check course here under particular topic</h4>
-
-  <select value="Topic" class="btn btn-primary dropdown-toggle " id="topic" [(ngModel)]="topicModel.id">
-    <option *ngFor="let item of courses" [value]="item.topicDTO.id"> {{item.topicDTO.id}}</option>
-  </select>
-
-  <select value="Course" class="btn btn-primary dropdown-toggle " [(ngModel)]=" courseModel.id">
-    <option *ngFor="let course of courses" [value]="course.id"> {{course.id}}</option>
-  </select>
-  <button value="submit" class="btn btn-info" (click)="getAllCourseByTopicId(topicModel.id,courseModel.id)"> Submit
-  </button>
-
-  <div *ngIf="show">
-    <h3 class="heading">Detail</h3>
-    <h5>Course</h5>
-    <li>{{courseModel.id}}</li>
-    <li>{{courseModel.name}}</li>
-    <li>{{courseModel.stream}}</li>
-    <li>{{courseModel.description}}</li>
-    <li style="color: cadetblue">To see Topic click button</li>
-    <button class="btn btn-success" (click)="viewTopic()">Topic</button>
-    <div *ngIf="display" class="col-sm-8 topicdisplay">
-      <li>{{topicModel.id}}</li>
-      <li>{{topicModel.name}}</li>
-      <li>{{topicModel.stream}}</li>
-      <li>{{topicModel.description}}</li>
-    </div>
-  </div>
-
-
-</div>
-
-
--->
 
 
 <!--Courses-->
@@ -186,3 +57,130 @@
 
 </section>
 <!--/ Courses-->
+<div>
+  <!----------------All course------------------------>
+
+  <h3 class="heading"> All Courses are:</h3>
+
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">
+      <th scope="col">Topic Id</th>
+      <th scope="col">Course Id</th>
+      <th scope="col">Course Name</th>
+      <th scope="col">Stream</th>
+      <th scope="col">Course Description</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of courseArray;">
+      <th scope="row"></th>
+      <td>{{item.topicDTO.id}}</td>
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.stream}}</td>
+      <td>{{item.description}}</td>
+
+      <td>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn" (click)="edit(item.id);"><i
+            class="glyphicon glyphicon-pencil"></i></button>
+          <button type="button" class="btn btn-default btn" (click)="deleteCourse(item.id);"><i
+            class="glyphicon glyphicon-trash"></i></button>
+          <!--<button type="button" class="btn btn-success btn" (click)="viewTopic(item.id);">Topic</button>-->
+        </div>
+      </td>
+    </tr>
+
+    </tbody>
+
+
+  </table>
+  <!--
+    <hr class="divider">
+
+    <div>
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+          <a (click)="setPage(1)">First</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+          <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+          <a (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+          <a (click)="setPage(pager.currentPage + 1)">Next</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+          <a (click)="setPage(pager.totalPages)">Last</a>
+        </li>
+      </ul>
+    </div>-->
+  <hr class="divider">
+  <!----------------Add course and topic------------------------>
+
+  <div>
+    <h3 class="heading"> Add new Course here:</h3>
+    <div>
+      <select value="Topic" class="btn btn-warning dropdown-toggle " [(ngModel)]="topicID">
+        <option *ngFor="let topics of addTopic" [value]="topics.name"> {{topics.name}}</option>
+      </select>
+      <hr>
+      <label>Topic Id</label>
+      <input type="text" class="form-control" readonly [value]="topicID">
+
+      <label>Course Id</label>
+      <input type="text" class="form-control" [(ngModel)]="courseId" placeholder="Enter Course Id">
+      <label>Name</label>
+      <input type="text" class="form-control" [(ngModel)]="courseName" placeholder="Enter Course Name">
+      <label>Stream</label>
+      <input type="text" class="form-control" [(ngModel)]="courseStream" placeholder="Enter Course Name">
+      <label>Description</label>
+      <textarea rows="4" cols="50" class="form-control" [(ngModel)]="courseDescription"
+                placeholder="Enter Course Description"></textarea>
+
+      <button class="btn btn-info addTopic" (click)="addCourse()">Add</button>
+    </div>
+
+
+  </div>
+
+  <!----------------check course and topic------------------------>
+  <br>
+  <h4 class="heading"> Check course here under particular topic</h4>
+
+  <select value="Topic" class="btn btn-primary dropdown-toggle " id="topic" [(ngModel)]="topicModel.id">
+    <option *ngFor="let item of courses" [value]="item.topicDTO.id"> {{item.topicDTO.id}}</option>
+  </select>
+
+  <select value="Course" class="btn btn-primary dropdown-toggle " [(ngModel)]=" courseModel.id">
+    <option *ngFor="let course of courses" [value]="course.id"> {{course.id}}</option>
+  </select>
+  <button value="submit" class="btn btn-info" (click)="getAllCourseByTopicId(topicModel.id,courseModel.id)"> Submit
+  </button>
+
+  <div *ngIf="show">
+    <h3 class="heading">Detail</h3>
+    <h5>Course</h5>
+    <li>{{courseModel.id}}</li>
+    <li>{{courseModel.name}}</li>
+    <li>{{courseModel.stream}}</li>
+    <li>{{courseModel.description}}</li>
+    <li style="color: cadetblue">To see Topic click button</li>
+    <button class="btn btn-success" (click)="viewTopic()">Topic</button>
+    <div *ngIf="display" class="col-sm-8 topicdisplay">
+      <li>{{topicModel.id}}</li>
+      <li>{{topicModel.name}}</li>
+      <li>{{topicModel.stream}}</li>
+      <li>{{topicModel.description}}</li>
+    </div>
+  </div>
+
+
+</div>
+
+
