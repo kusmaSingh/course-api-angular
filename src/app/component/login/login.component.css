@@ -1,0 +1,12 @@
+.error{
+  font-size: 11px;
+  padding: 0px;
+  margin-bottom:  0px
+}
+.loginError{
+  color: red;
+  font-size: 12px;
+  align: center;
+  margin-left: 55px;
+  margin-top: -25px;
+}

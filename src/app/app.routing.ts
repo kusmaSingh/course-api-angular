@@ -4,15 +4,18 @@ import {PagenotfoundComponent} from './component/pagenotfound/pagenotfound.compo
 import {LoginComponent} from './component/login/login.component';
 import {HomeComponent} from './component/home/home.component';
 import {SignupComponent} from './component/signup/signup.component';
+import {MainComponent} from './component/main/main.component';
+import {CourseComponent} from './component/course/course.component';
 
 const appRoutes: Routes = [
-  {path: '', 'redirectTo': '/home/login', 'pathMatch': 'full'},
+  {path: '', 'redirectTo': '/home/main', 'pathMatch': 'full'},
   {
     path: 'home', component: HomeComponent,
     children: [
-      {path: 'login', component: LoginComponent},
+      {path: 'main', component: MainComponent},
       {path: 'signup', component: SignupComponent},
-      {path: 'topics', component: TopicComponent}
+      {path: 'topics', component: TopicComponent},
+      {path: 'courses', component: CourseComponent},
     ]
   },
 

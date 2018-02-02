@@ -1,5 +1,6 @@
+<!--
 <div>
-  <!----------------All course------------------------>
+  &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;All course&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
 
   <h3 class="heading"> All Courses are:</h3>
 
@@ -30,21 +31,16 @@
             class="glyphicon glyphicon-pencil"></i></button>
           <button type="button" class="btn btn-default btn" (click)="deleteCourse(item.id);"><i
             class="glyphicon glyphicon-trash"></i></button>
-          <!--<button type="button" class="btn btn-success btn" (click)="viewTopic(item.id);">Topic</button>-->
+          &lt;!&ndash;<button type="button" class="btn btn-success btn" (click)="viewTopic(item.id);">Topic</button>&ndash;&gt;
         </div>
       </td>
     </tr>
 
     </tbody>
 
-    <!--
-                &lt;!&ndash; items being paged &ndash;&gt;
-                <div *ngFor="let item of pagedItems">{{item.name}}</div>-->
-
-    <!-- pager -->
 
   </table>
-<!--
+&lt;!&ndash;
   <hr class="divider">
 
   <div>
@@ -65,9 +61,9 @@
         <a (click)="setPage(pager.totalPages)">Last</a>
       </li>
     </ul>
-  </div>-->
+  </div>&ndash;&gt;
   <hr class="divider">
-  <!----------------Add course and topic------------------------>
+  &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Add course and topic&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
 
   <div>
     <h3 class="heading"> Add new Course here:</h3>
@@ -95,7 +91,7 @@
 
   </div>
 
-  <!----------------check course and topic------------------------>
+  &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;check course and topic&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
   <br>
   <h4 class="heading"> Check course here under particular topic</h4>
 
@@ -128,3 +124,65 @@
 
 
 </div>
+
+
+-->
+
+
+<!--Courses-->
+<section id="courses" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="header-section text-center">
+        <h2>Courses</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
+        <hr class="bottom-line">
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 padleft-right"  *ngFor="let item of courseArray;">
+
+        <figure class="imghvr-fold-up">
+          <img src="/assets/img/course01.jpg" class="img-responsive">
+
+          <figcaption>
+
+            <h3>{{item.name}}</h3>
+            <p>{{item.stream}}</p>
+              <p>{{item.description}}.</p>
+
+          </figcaption>
+          <a href="#"></a>
+        </figure>
+
+      </div>
+      <div>
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+        </ul>
+      </div>
+      <hr class="divider">
+
+
+
+      </div>
+    </div>
+
+</section>
+<!--/ Courses-->

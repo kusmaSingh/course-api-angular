@@ -1,6 +1,9 @@
+import {environment} from '../../environments/environment';
 
 export class Constants {
-  public static WEB_URL = "http://localhost:8081/";
+  public static WEB_URL = environment.WEB_SERVER_BASE_URL;
+  //public static WEB_URL= 'http://13.127.100.225:8081/course_api/';
+  public static AUTHENTICATED_USER_INFORMATION = 'userStorage';
 
   public static  courseType=[
     {value:'java-stream' , displayValue:"java-stream"},
