@@ -27,9 +27,8 @@ export class LoginComponent implements OnInit {
 
   public login() {
     this.loginService.login(this.userModel).subscribe(response => {
-      if (response.statusCode == 200) {
-        this.userModel.id = response.data.id;
-        this.userModel.username = response.data.username
+      if (response.token != null) {
+
         this.router.navigate(['/home/courses']);
         let userDetail ={
           'id':response.data.id,

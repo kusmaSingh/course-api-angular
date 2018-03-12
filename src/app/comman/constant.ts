@@ -5,6 +5,10 @@ export class Constants {
   //public static WEB_URL= 'http://13.127.100.225:8081/course_api/';
   public static AUTHENTICATED_USER_INFORMATION = 'userStorage';
 
+  //Auth, Token, etc properties.
+  public static ACCESS_TOKEN = 'accessToken';
+  public static BEARER = "Bearer-";
+
   public static  courseType=[
     {value:'java-stream' , displayValue:"java-stream"},
     {value:'spring-stream' ,displayValue:"spring-stream"},

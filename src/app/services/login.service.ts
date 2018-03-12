@@ -11,7 +11,7 @@ export class LoginService {
   }
 
   public login(user: UserModel): Observable<any> {
-    return this.httpClient.post(Constants.WEB_URL + 'user/login', user);
+    return this.httpClient.post(Constants.WEB_URL + 'api/auth/login', user);
   }
 
 

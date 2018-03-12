@@ -24,19 +24,19 @@ export class CommonService {
     localStorage.removeItem(Constants.AUTHENTICATED_USER_INFORMATION);
   }
 
- /* /!**
+  /**
    * This method is use for get Access Token from local storage data.
-   *!/
+   */
   public getAccessToken(): any {
     return localStorage.getItem(Constants.ACCESS_TOKEN);
   }
 
-  /!**
+  /**
    * This method is use for set Access Token to local storage data.
-   *!/
+   */
   public setAccessToken(data: any) {
     return localStorage.setItem(Constants.ACCESS_TOKEN, Constants.BEARER+data);
-  }*/
+  }
 
 
   /**
